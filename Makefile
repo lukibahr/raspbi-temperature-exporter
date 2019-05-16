@@ -1,6 +1,6 @@
 # Makefile
 
-RUNPYTHON = $(shell which pylint)
+RUNPYTHON = $(shell which python)
 RUNLINT = $(shell which pylint)
 RUNPIP = $(shell which pip)
 
