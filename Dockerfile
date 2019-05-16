@@ -1,16 +1,16 @@
-FROM alpine:latest
+FROM alpine:alpine:3.7
 
-ADD src /tempexporter
-ADD res /res
+ADD src /exporter
+ADD lib /lib
 
 RUN apk add  --no-cache --update \
     python \
     python-dev \
     py-pip \
     build-base
-RUN pip install -r /res/requirements.txt
+RUN pip install -r /lib/requirements.txt
 
 
-WORKDIR "/tempexporter"
+WORKDIR "/exporter"
 
 ENTRYPOINT ["python", "endpoint.py"]

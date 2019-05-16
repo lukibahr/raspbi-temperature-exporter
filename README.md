@@ -10,22 +10,21 @@ Prometheus Endpoint, written in Python to read DHT11 1wire sensor and expose tem
   -- src/endpoint.py
   -- res/requirements.txt
 
-# Prerequisites
+## Prerequisites
 
-Make sure, you have kernelmodules loaded. To do so, follow these steps: 
+Make sure, you have kernelmodules loaded. To do so, follow these steps:
 
-`sh
-sudo modprobe w1-gpio
-sudo modprobe w1-therm
-sudo echo "dtoverlay=w1-gpio" >> /boot/config.txt
-lsmod #check if modules are loaded correctly
-`
+```bash
+$ sudo modprobe w1-gpio
+$ sudo modprobe w1-therm
+$ sudo echo "dtoverlay=w1-gpio" >> /boot/config.txt
+$ lsmod #check if modules are loaded correctly
+```
 
+## Implementation
 
-# Implementation
-
-python shit here
-
+Have a look at the sourcecode for details. Generally, you'll have to download and import the required python libraries 
+and afterwards refer to the official docs on how to implement a prometheus exporter: https://github.com/prometheus/client_python
 
 # Dockerrization
 
@@ -53,3 +52,4 @@ Just run the container. Feel free to pass the container to an orchestrator.
   - Add CI/CD Support
   - Add Adafruit humidity sensor capability
   - Add Basic Auth to prometheus endpoint
+  - [OPEN] use arm32v7/python:2.7 image

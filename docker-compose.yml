@@ -1,17 +1,6 @@
 version: "3.3"
 services:
-  nginx:
-    restart: always
-    image: troyfontaine/armhf-nginx:latest
-    ports: 
-    - 9102:9102
-    - 9133:9133
-    volumes:
-    - /opt/prometheus/tempexporter/temperature-raspberry-pi/nginx/:/etc/nginx/
-    container_name: nginx_proxy
-    networks:
-      - black_pearl_overlay
-        
+
   tempexporter:
     restart: always
     image: tempexporter:1.0
@@ -20,17 +9,8 @@ services:
     ports:
     - 9102
     networks:
-      - black_pearl_overlay
-      
-  fritzbox_exporter:
-    restart: always
-    image: fritz-exporter:0.1
-    container_name: fritz-exporter
-    ports:
-      - 9133
-    networks:
-      - black_pearl_overlay      
-      
+      - pi
+
 networks: 
-  black_pearl_overlay: 
-    driver: bridge
+  pi: 
+    external: true
