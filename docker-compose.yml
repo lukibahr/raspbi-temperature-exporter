@@ -1,13 +1,13 @@
 version: "3.3"
 services:
 
-  tempexporter:
+  exporter:
     restart: always
-    image: tempexporter:1.0
+    image: lukasbahr/raspbi-temperature-exporter:arm32v6
     environment:
-    - TEMPEXPORTER_PORT=9102
+    - EXPORTER_PORT=9103
     ports:
-    - 9102
+    - "9103:9103"
     networks:
       - pi
 
