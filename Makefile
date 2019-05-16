@@ -1,45 +1,21 @@
 # Makefile
 
-REGISTRY = docker.marksys.de
-NAMESPACE = infrastructure
-PROJECT = rapid7-exporter
-
-RUNDOCKER = $(shell which docker) $(@)
-RUNCOMPOSE = $(shell which docker-compose)
-
+RUNPYTHON = $(shell which pylint)
 RUNLINT = $(shell which pylint)
+RUNPIP = $(shell which pip)
 
 VERSION = $(shell git rev-parse --short HEAD) 
 BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 
-CONTAINER = $(PROJECT):$(VERSION)
+TEMEXPORTER_PORT=8888
 
 all: login build tag push
  
-login: 
-	@$(RUNDOCKER) --username=$(DOCKER_USER) --password=$(DOCKER_PASSWORD) $(REGISTRY)
-	@$(RUNDOCKER) --username=$(DOCKER_USER) --password=$(DOCKER_PASSWORD) $(REGISTRY):9000
-
-build: login
-	$(RUNDOCKER) -t $(REGISTRY)/$(NAMESPACE)/$(CONTAINER) -f Dockerfile .
-
 lint: 
 	$(RUNLINT) --rcfile=$(PWD)/.pylintrc $(PWD)/src/endpoint.py
-	
-tag: build
-	$(RUNDOCKER) $(REGISTRY)/$(NAMESPACE)/$(CONTAINER) $(REGISTRY):9000/$(NAMESPACE)/$(CONTAINER)
 
-push: tag
-	$(RUNDOCKER) $(REGISTRY):9000/$(NAMESPACE)/$(CONTAINER)
-	
-run: build
-	$(RUNDOCKER) -d --name=$(PROJECT) -p 8000:8000 $(REGISTRY)/$(CONTAINER)
+requirements:
+	$(RUNPIP) install -r /lib/requirements.txt --user
 
-kill:
-	-$(RUNDOCKER) $(PROJECT)
-
-rm: kill
-	-$(RUNDOCKER) $(PROJECT)
-
-deploy:
-	$(RUNCOMPOSE) up -d 
+run: 
+	$(RUNPYTHON) src/endpoint.py

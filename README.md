@@ -53,3 +53,4 @@ Just run the container. Feel free to pass the container to an orchestrator.
   - Add Adafruit humidity sensor capability
   - Add Basic Auth to prometheus endpoint
   - [OPEN] use arm32v7/python:2.7 image
+  - [OPEN] use buildx to create the proper image
