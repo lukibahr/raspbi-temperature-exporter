@@ -9,7 +9,7 @@ BRANCH = $(shell git rev-parse --abbrev-ref HEAD)
 
 TEMEXPORTER_PORT=8888
 
-all: login build tag push
+all: requirements lint run
  
 lint: 
 	$(RUNLINT) $(PWD)/src/endpoint.py
