@@ -15,7 +15,7 @@ lint:
 	$(RUNLINT) --rcfile=$(PWD)/.pylintrc $(PWD)/src/endpoint.py
 
 requirements:
-	$(RUNPIP) install -r /lib/requirements.txt --user
+	$(RUNPIP) install -r lib/requirements.txt --user
 
 run: 
 	$(RUNPYTHON) src/endpoint.py
