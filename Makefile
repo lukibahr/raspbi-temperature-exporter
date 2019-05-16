@@ -12,7 +12,7 @@ TEMEXPORTER_PORT=8888
 all: login build tag push
  
 lint: 
-	$(RUNLINT) --rcfile=$(PWD)/.pylintrc $(PWD)/src/endpoint.py
+	$(RUNLINT) $(PWD)/src/endpoint.py
 
 requirements:
 	$(RUNPIP) install -r lib/requirements.txt --user

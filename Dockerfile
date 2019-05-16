@@ -1,16 +1,8 @@
-FROM alpine:alpine:3.7
-
-ADD src /exporter
-ADD lib /lib
-
-RUN apk add  --no-cache --update \
-    python \
-    python-dev \
-    py-pip \
-    build-base
-RUN pip install -r /lib/requirements.txt
-
+FROM arm32v6/python:2.7-alpine3.9
 
 WORKDIR "/exporter"
+ADD src .
+ADD requirements.txt .
+RUN pip install -r requirements.txt
 
 ENTRYPOINT ["python", "endpoint.py"]

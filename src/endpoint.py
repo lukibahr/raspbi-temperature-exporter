@@ -20,11 +20,11 @@ def process_temperature():
 
 if __name__ == '__main__':
     # Start up the server to expose the metrics.
-    if 'TEMPEXPORTER_PORT' in os.environ:
-        logging.info("Running exporter on port: %s", os.getenv('TEMPEXPORTER_PORT'))
-        start_http_server(int(os.getenv('TEMPEXPORTER_PORT')))
+    if 'EXPORTER_PORT' in os.environ:
+        logging.info("Running exporter on port: %s", os.getenv('EXPORTER_PORT'))
+        start_http_server(int(os.getenv('EXPORTER_PORT')))
         # call process temperature function
         while True:
             process_temperature()
     else:
-        logging.error("TEMPEXPORTER_PORT variable is not set.")
+        logging.error("EXPORTER_PORT variable is not set.")

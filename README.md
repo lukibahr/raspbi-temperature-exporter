@@ -1,56 +1,47 @@
-# Prometheus Temperature exporter
+# Prometheus Temperature exporter for raspberry pi
 
-Prometheus Endpoint, written in Python to read DHT11 1wire sensor and expose temperature values as a prometheus metric.
-
-# Project structure
-
-../
-  -- Dockerfile
-  -- README.md
-  -- src/endpoint.py
-  -- res/requirements.txt
+Prometheus Endpoint, written in Python to read DHT11 1wire sensor and exposes temperature values as a prometheus metric.
 
 ## Prerequisites
 
-Make sure, you have kernelmodules loaded. To do so, follow these steps:
+Make sure, you have the required kernel modules loaded. To do so, follow these steps:
 
 ```bash
 $ sudo modprobe w1-gpio
-$ sudo modprobe w1-therm
-$ sudo echo "dtoverlay=w1-gpio" >> /boot/config.txt
+$ sudo modprobe w1-therm 
+$ sudo echo "dtoverlay=w1-gpio" >> /boot/config.txt #to enable 1-wire config and persist after reboot
 $ lsmod #check if modules are loaded correctly
+$ sudo reboot
+```
+
+After your pi has been rebooted, check if you can list the attached 1-wire devices
+
+```bash
+$ ls /sys/bus/w1/devices/
 ```
 
 ## Implementation
 
-Have a look at the sourcecode for details. Generally, you'll have to download and import the required python libraries 
-and afterwards refer to the official docs on how to implement a prometheus exporter: https://github.com/prometheus/client_python
+Have a look at the sourcecode for details. Generally, you'll have to download and import the required python libraries.
+Refer to the official documentation on how to implement a prometheus exporter: https://github.com/prometheus/client_python.
 
-# Dockerrization
+## Dockerrization
 
-I've used hypriot os with a RaspberryPi2. Works pretty fine, although Docker builds might take some time.
+I've used hypriot os with a RaspberryPi 3B+. It works on a Raspberry Pi 2 too, although docker builds might take some time, so be calm to your Pi.
 
+## Building and running
 
-# Security
-nginx conf and sudo apt-get install apache2-utils -y here
+You can run the exporter either via python itself or in a docker container. The required commands for running it via python are 
+also in the supplied Makefile. For docker use:
 
-# Accessibility
+```bash
+$ docker build -t raspbi-temperature-exporter:arm32v6 -f Dockerfile .
+$ docker run -it -e EXPORTER_PORT=9103 -p 9103:9103 raspbi-temperature-exporter:arm32v6
+```
 
-freetz exposes
+You can also download it from docker hub via `docker pull lukasbahr/raspbi-temperature-exporter:arm32v6`
 
+## Open ToDo's
 
-# Run it
-
-Just run the container. Feel free to pass the container to an orchestrator. 
-
-`docker run -it -e TEMPEXPORTER_PORT=9102 -p 9102:9102 tempexporter:1.0`
-
-# Open ToDo's
-  - Complete documentation
-  - Add "suppress container logoutput" option
-  - Add Makefile
-  - Add CI/CD Support
-  - Add Adafruit humidity sensor capability
-  - Add Basic Auth to prometheus endpoint
-  - [OPEN] use arm32v7/python:2.7 image
-  - [OPEN] use buildx to create the proper image
+- Add CI/CD Support
+- [OPEN] use buildx to create the proper image
