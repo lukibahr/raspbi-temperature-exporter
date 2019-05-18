@@ -45,5 +45,7 @@ You can also download it from docker hub via `docker pull lukasbahr/raspbi-tempe
 
 ## Open ToDo's
 
-- Add CI/CD Support
+- [OPEN] Add CI/CD Support
+- [OPEN] Add unit tests
 - [OPEN] use buildx to create the proper image
+- [OPEN] Add health metric, error metric, scrape interval, general information about exporter etc.

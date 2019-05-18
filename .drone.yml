@@ -15,7 +15,6 @@ steps:
     image: plugins/docker
     settings:
       repo: lukasbahr/raspbi-temperature-exporter
-      registry: registry.devopoly.de
       tags: arm32v6
       dockerfile: Dockerfile
       username:
