@@ -1,4 +1,6 @@
-# Prometheus Temperature exporter for raspberry pi
+# Prometheus Temperature exporter for raspberry pi 
+
+[![Build Status](https://ci.devopoly.de/api/badges/lukibahr/raspbi-temperature-exporter/status.svg)](https://ci.devopoly.de/lukibahr/raspbi-temperature-exporter)
 
 Prometheus Endpoint, written in Python to read DHT11 1wire sensor and exposes temperature values as a prometheus metric.
 
