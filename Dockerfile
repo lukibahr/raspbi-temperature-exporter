@@ -1,6 +1,6 @@
 FROM hypriot/rpi-alpine
 
-RUN apk update && apk add python-pip && apk add python py-pip
+RUN apk update && apk add python py-pip
 
 WORKDIR "/exporter"
 ADD src .
