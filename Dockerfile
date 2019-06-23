@@ -1,4 +1,6 @@
-FROM arm32v6/python:2.7-alpine3.9
+FROM hypriot/rpi-alpine
+
+RUN apk add python-pip && apk add python py-pip
 
 WORKDIR "/exporter"
 ADD src .
