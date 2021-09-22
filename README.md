@@ -1,8 +1,8 @@
-# Prometheus Temperature exporter for raspberry pi 
+# DEPRECATED - This project is deprecated and will no longer be maintained 
+
+The project Prometheus Temperature exporter for raspberry pi is no longer be maintained and will be superseded by https://github.com/lukibahr/raspbi-ds18b20-exporter. 
 
 [![Build Status](https://ci.devopoly.de/api/badges/lukibahr/raspbi-temperature-exporter/status.svg)](https://ci.devopoly.de/lukibahr/raspbi-temperature-exporter) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/) [![Open Source Love svg1](https://badges.frapsoft.com/os/v1/open-source.svg?v=103)](https://github.com/ellerbrock/open-source-badges/)
-
-
 
 Prometheus Endpoint, written in Python to read 1wire sensor and exposes temperature values as a prometheus metric.
 
